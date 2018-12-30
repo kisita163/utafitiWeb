@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+ @font-face { font-family: JuneBug; src: url('OstrichSans-Light.otf'); } 
+ h1 {
+    font-family: JuneBug;
+    text-align: center
+ }
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 14px 20px;
+  color: black;
+  background-color: #ddd;
+  text-align: center;
+  cursor: pointer;
+  width:100%
+}
+
+button:hover {
+  background-color: #677cec;
+  color: white;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+  width:600px;
+  margin: 0 auto;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<form name="loginForm" onsubmit="return validateForm()" method="post">
+ <div class="container">
+   <h1 style="font-size:50px">UTAFITI</h1>
+   <label for="uname"><b>Utilisateur</b></label>
+   <input type="text" placeholder="Entrer l'adresse e-mail" name="uname" required>
+
+   <label for="psw"><b>Mot de passe</b></label>
+   <input type="password" placeholder="Entrer le mot de passe" name="psw" required>
+       
+   <button type="submit">Login</button>
+ </div>
+</form>
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+<script>
+function validateForm() {
+  
+  var email = document.forms["loginForm"]["uname"].value;
+  var passw = document.forms["loginForm"]["psw"].value;
+  //Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBSu9flb1cs58EAbtCbWUKomVCfXkTKYeU",
+    authDomain: "caritas-50fab.firebaseapp.com",
+    databaseURL: "https://caritas-50fab.firebaseio.com",
+    projectId: "caritas-50fab",
+    storageBucket: "caritas-50fab.appspot.com",
+    messagingSenderId: "414267024306"
+  };
+  firebase.initializeApp(config);                    
+  if (email.length < 4) {
+      alert('Please enter an email address.');
+      return;
+  }
+  if (passw.length < 4) {
+    alert('Please enter a password.');
+    return;
+  }
+  // Sign in with email and pass.
+  // [START authwithemail]
+  firebase.auth().signInWithEmailAndPassword(email, passw).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // [START_EXCLUDE]
+    if (errorCode === 'auth/wrong-password') {
+      alert('Wrong password.');
+    } else {
+      alert(errorMessage);
+    }
+    // [END_EXCLUDE]
+  });
+    // [END authwithemail]
+  var ref = firebase.database().ref(); 
+  alert(firebase.auth().currentUser)
+}
+</script>
+</body>
+</html>
+
