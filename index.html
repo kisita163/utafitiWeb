@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
 <style>
 body, html {
   height: 100%;
@@ -47,6 +48,21 @@ body, html {
   background-color: #677cec;
   color: white;
 }
+
+label{
+    padding: 10px;
+    background: #677cec; 
+    display: table;
+    color: #fff;
+    width:165px;
+    margin-top:10px
+     }
+
+
+
+input[type="file"] {
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -55,7 +71,9 @@ body, html {
   <div class="hero-text">
     <h1 style="font-size:50px">UTAFITI</h1>
     <a href="html/results.html"><button>Campagne Courante</button></a>
-    <button onclick="document.getElementById('demo').innerHTML = Date()">Nouvelle Campagne</button>
+    <label id="#bb">Nouvelle Campagne
+    <input type="file" id="File"   size="60" >
+    </label> 
   </div>
 </div>
 
