@@ -1,7 +1,7 @@
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBSu9flb1cs58EAbtCbWUKomVCfX}kTKYeU",
+    apiKey: "",
     authDomain: "caritas-50fab.firebaseapp.com",
     databaseURL: "https://caritas-50fab.firebaseio.com",
     projectId: "caritas-50fab",
